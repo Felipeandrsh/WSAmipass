@@ -198,9 +198,6 @@ Dim sInputJson As String
 Dim jRespueta As Object
 Dim sSalida As String
 
-'Dim sbJson As New ChilkatStringBuilder
-'Dim success As Long
-'Dim JSON As New ChilkatJsonObject
 
 Private Sub Form_Load()
    
@@ -216,36 +213,6 @@ Private Sub Form_Load()
     
 End Sub
 
-Private Sub cmdRespuesta_Click()
-    
-    sInputJson = "{CodRespuesta:'1',DesRespuesta: 'APROBADO',CodAutorizacionz: '5270496',Fecha: '2016-09-06 17:05:04.210',Monto: '1000',TokenAN: '465464'}"
-    sInputJson = "{CodRespuesta:'1',DesRespuesta: 'APROBADO'"
-    'sInputJson = "{"CodRespuesta ": "53 ", "DesRespuesta ": "Codigo Tx Invalido ", "CodAutorizacion ": "15752 ", "Fecha ": "2021-03-26 15:45:48.913 ", "Monto ": "0 ", "Saldo ": "0 "}"
-
-    
-    'sInputJson = "{ width: '200', frame: false, height: 130, bodyStyle:'background-color: #ffffcc;',buttonAlign:'right', items: [{ xtype: 'form',  url: '/content.asp'},{ xtype: 'form2',  url: '/content2.asp'}] }"
-    a = Replace(sInputJson, Chr(34), Chr(39))
-   
-    MsgBox a
-    'Convertimos cadena a Json
-    Set jRespueta = JSON.parse(sInputJson)
-    
-    'Mostramos json en String
-    txtSalida = JSON.toString(jRespueta)
-    'MsgBox JSON.toString(jRespueta)
-    
-    'MsgBox "Respuesta: " & jRespueta.Item("DesRespuesta")
-    
-    'Accedemos al contenido
-    'jRespueta .Item("items").Item(1).Item ("url")
-
-    'Podemos agregar al Json
-    'jRespueta.Item("items").Item(1).Add "ExtraItem", "Extra Data Value"
-    
-    MsgBox "Contenido Json: " & JSON.toString(jRespueta)
-    
-End Sub
-
 Private Sub cmdTest_Click()
     
     sCodigoQR = Text1.Text
@@ -255,13 +222,8 @@ Private Sub cmdTest_Click()
     
     sSalida = callAmipassPay(sCodigoQR, sMonto, sCodLocal, sPromo)
     
-    'a = Replace(sSalida, Chr(34), Chr(39))
-    a = Replace(sSalida, Chr(92), Chr(32))
-    'String to Json
-    Set jRespueta = JSON.parse(sSalida)
-    
-    txtSalida = JSON.toString(jRespueta)
-    MsgBox sSalida
-    
+    'Json to String
+    txtSalida = sSalida
+
 End Sub
 

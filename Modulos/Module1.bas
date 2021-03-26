@@ -42,13 +42,11 @@ Public Function callAmipassPay(sCodigoQR As String, sMonto As String, sCodLocal 
         sRespuesta = Replace(sRespuesta, Chr(34), Chr(39))
         
         'Quita primera y ultima comilla
-        sRespuesta = Mid(sRespuesta, 1, Len(sRespuesta) - 1)
-        sRespuesta = Mid(sRespuesta, 2, Len(sRespuesta))
+        sRespuesta = Mid(sRespuesta, 2, Len(sRespuesta) - 2)
         'MsgBox sRespuesta
       
     End If
     
-    Set resJson = JSON.parse(sRespuesta)
     respuestaJson = "{status:'" & iEstado & "',response:" & sRespuesta & "}"
     Set httpRequest = Nothing
     
