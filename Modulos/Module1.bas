@@ -1,8 +1,10 @@
 Attribute VB_Name = "Module1"
-Dim sTokenAutenticacion As String, sRespuesta As String, sParametros As String, sUrl As String, respuestaJson As String, sToken As String
+Dim sRespuesta As String, sParametros As String, sUrl As String, respuestaJson As String, sToken As String
 Dim httpRequest As New WinHttpRequest
 Dim iEstado As Integer
-Dim oJson As Object
+Dim resJson As Object
+
+Dim arrSplitStrings() As String
 
 Public Function callAmipassPay(sCodigoQR As String, sMonto As String, sCodLocal As String, sPromo As String) As String
 
@@ -22,22 +24,34 @@ Public Function callAmipassPay(sCodigoQR As String, sMonto As String, sCodLocal 
     
     iEstado = httpRequest.Status
     If iEstado <> 200 Then
-        sRespuesta = "Error " & iEstado & " al llamar a la API, " & httpRequest.statusText
+        sRespuesta = "{'Error " & iEstado & " al llamar a la API, " & httpRequest.statusText & "'}"
         sErrorBody = httpRequest.responseText
     Else
         sRespuesta = httpRequest.responseText
+        
+        'Quita \ y quita comillas de indices
+        sRespuesta = Replace(sRespuesta, Chr(92), Chr(32))
+        sRespuesta = Replace(sRespuesta, "" & Chr(34) & "CodRespuesta " & Chr(34) & "", "CodRespuesta")
+        sRespuesta = Replace(sRespuesta, "" & Chr(34) & "DesRespuesta " & Chr(34) & "", "DesRespuesta")
+        sRespuesta = Replace(sRespuesta, "" & Chr(34) & "CodAutorizacion " & Chr(34) & "", "CodAutorizacion")
+        sRespuesta = Replace(sRespuesta, "" & Chr(34) & "Fecha " & Chr(34) & "", "Fecha")
+        sRespuesta = Replace(sRespuesta, "" & Chr(34) & "Monto " & Chr(34) & "", "Monto")
+        sRespuesta = Replace(sRespuesta, "" & Chr(34) & "Saldo " & Chr(34) & "", "Saldo")
+              
+        'Cambia comillas dobles por comillas simples
+        sRespuesta = Replace(sRespuesta, Chr(34), Chr(39))
+        
+        'Quita primera y ultima comilla
+        sRespuesta = Mid(sRespuesta, 1, Len(sRespuesta) - 1)
+        sRespuesta = Mid(sRespuesta, 2, Len(sRespuesta))
+        'MsgBox sRespuesta
+      
     End If
     
+    Set resJson = JSON.parse(sRespuesta)
+    respuestaJson = "{status:'" & iEstado & "',response:" & sRespuesta & "}"
     Set httpRequest = Nothing
-    respuestaJson = "{status:'" & iEstado & "',response:'" & sRespuesta & "'}"
     
     callAmipassPay = respuestaJson
-    
-    'Convertimos cadena a Json
-    'Set oJson = json.parse(respuestaJson)
-    'Mostramos en String
-    'MsgBox (json.toString(oJson))
   
 End Function
-
-

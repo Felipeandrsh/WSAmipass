@@ -84,7 +84,7 @@ Public Sub callAmipassPayTEST(sCodigoQR As String, sMonto As String, sCodLocal A
     End If
     
     MsgBox ("Finish!!")
-    respuestaJson = json.parse("{items:" & sRespuesta & "}")
+    respuestaJson = JSON.parse("{items:" & sRespuesta & "}")
 
 
 End Sub
@@ -116,7 +116,7 @@ Private Sub TEEEEST()
 
     sInputJson = "{items:" & Texto & "}"
 
-    Set p = json.parse(sInputJson)
+    Set p = JSON.parse(sInputJson)
 
     NOMBRE = p.Item("items").Item(1).Item("NOMBRE")
 
@@ -124,5 +124,35 @@ Private Sub TEEEEST()
 
 
 End Sub
+
+Private Function formaterToStringJson(ByRef str As String, ByRef index As Long)
+
+        'Quita \ y cambia de comillas dobles a simples
+        'sRespuesta = Replace(sRespuesta, Chr(34), Chr(39))
+        sRespuesta = Replace(sRespuesta, Chr(92), Chr(32))
+        
+        
+        'sRespuesta = Replace(sRespuesta, Chr(123), Chr(91))
+        'sRespuesta = Replace(sRespuesta, Chr(125), Chr(93))
+        
+        Do While index > 0 And index <= Len(str)
+          'Select Case Mid(str, index, 1)
+          MsgBox str
+          
+          Select Case Mid(str, index, 1)
+          Case "CodRespuesta"
+            MsgBox "ESTAS EN EL CASE 1"
+          Case "DesRespuesta"
+            MsgBox "ESTAS EN EL CASE 2"
+          Case Else
+            MsgBox "No se encontro"
+          End Select
+          
+          index = index + 1
+       Loop
+    
+            
+
+End Function
 
 
