@@ -21,7 +21,7 @@ Begin VB.Form formTest
       EndProperty
       Height          =   495
       Left            =   2085
-      TabIndex        =   10
+      TabIndex        =   9
       Top             =   2805
       Width           =   1830
    End
@@ -37,7 +37,7 @@ Begin VB.Form formTest
       EndProperty
       Height          =   495
       Left            =   2070
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   2100
       Width           =   1800
    End
@@ -53,7 +53,7 @@ Begin VB.Form formTest
       EndProperty
       Height          =   495
       Left            =   2055
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   1500
       Width           =   1800
    End
@@ -69,25 +69,8 @@ Begin VB.Form formTest
       EndProperty
       Height          =   495
       Left            =   2055
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   870
-      Width           =   1785
-   End
-   Begin VB.CommandButton cmdRespuesta 
-      Caption         =   "Respuesta Test"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   510
-      Left            =   1980
-      TabIndex        =   2
-      Top             =   4440
       Width           =   1785
    End
    Begin VB.CommandButton cmdTest 
@@ -128,7 +111,7 @@ Begin VB.Form formTest
       Height          =   495
       Index           =   3
       Left            =   900
-      TabIndex        =   6
+      TabIndex        =   5
       Top             =   2190
       Width           =   1215
    End
@@ -146,7 +129,7 @@ Begin VB.Form formTest
       Height          =   495
       Index           =   2
       Left            =   1125
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   2820
       Width           =   1215
    End
@@ -164,7 +147,7 @@ Begin VB.Form formTest
       Height          =   495
       Index           =   1
       Left            =   1200
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   1530
       Width           =   1215
    End
@@ -182,7 +165,7 @@ Begin VB.Form formTest
       Height          =   495
       Index           =   0
       Left            =   765
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   930
       Width           =   1215
    End
@@ -197,7 +180,6 @@ Dim a As String
 Dim sInputJson As String
 Dim jRespueta As Object
 Dim sSalida As String
-
 
 Private Sub Form_Load()
    

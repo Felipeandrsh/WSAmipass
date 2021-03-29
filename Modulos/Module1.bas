@@ -1,17 +1,19 @@
 Attribute VB_Name = "Module1"
-Dim sRespuesta As String, sParametros As String, sUrl As String, respuestaJson As String, sToken As String
+Dim sRespuesta As String, sParametros As String, sUrl As String, respuestaJson As String, sToken As String, sMsg As String
 Dim httpRequest As New WinHttpRequest
 Dim iEstado As Integer
 Dim resJson As Object
+
 
 Dim arrSplitStrings() As String
 
 Public Function callAmipassPay(sCodigoQR As String, sMonto As String, sCodLocal As String, sPromo As String) As String
 
+On Error GoTo ErrHandler
+
     sToken = "1348901 "
     sParametros = "?NumeroTransaccion=" & sCodigoQR & "&Monto=" & sMonto & "&CodLocal=" & sCodLocal & "&CodPromocion=" & sPromo
     sUrl = "https://intpay.amipassqa.com/wspay/PayPAP" & sParametros
-    'sUrl = "https://pay.amipass.com/wspayTest/PayPAP" & sParametros
 
     'Crea y envia solicitud
     With httpRequest
@@ -49,7 +51,12 @@ Public Function callAmipassPay(sCodigoQR As String, sMonto As String, sCodLocal 
     
     respuestaJson = "{status:'" & iEstado & "',response:" & sRespuesta & "}"
     Set httpRequest = Nothing
-    
     callAmipassPay = respuestaJson
   
+Exit Function
+
+ErrHandler:
+    sMsg = "Error #" & Err.Number & ": '" & Err.Description & "' from '" & Err.Source & "'"
+    MsgBox sRespuesta
+
 End Function
