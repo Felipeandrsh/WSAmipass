@@ -1,0 +1,5 @@
+** Pasos para ejecutar rama master**
+
+- Agregar REFERENCIA Microsoft WinHTTP Service, version 5.1 (referencia ubicada en carpeta Extras)
+- Agregar Modulo Json (modulo ubicado en Modulos)
+- Agregar Clase cJsonScrip y cStringBulder (clases ubicadas en carperta Clases)
