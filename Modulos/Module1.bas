@@ -1,9 +1,12 @@
 Attribute VB_Name = "Module1"
-Dim sRespuesta As String, sParametros As String, sUrl As String, respuestaJson As String, sToken As String, sMsg As String
+Dim sRespuesta As String, sParametros As String, sUrl As String, respuestaJson As String, sToken As String, sMsError As String
 Dim httpRequest As New WinHttpRequest
 Dim iEstado As Integer
 
 Public Function callAmipass(sParametros As String)
+   
+
+On Error GoTo ErrHandler
     
     sToken = "1348901"
     sUrl = "https://intpay.amipassqa.com/wspay/" & sParametros
@@ -15,6 +18,12 @@ Public Function callAmipass(sParametros As String)
         .setRequestHeader "Authorization", sAuthorization
         .send
     End With
+    
+Exit Function
+
+ErrHandler:
+sMsError = "Error #" & Err.Number & ": '" & Err.Description & "' from '" & Err.Source & "'"
+MsgBox sMsError
 
 End Function
 
@@ -91,7 +100,7 @@ Public Function getTransactionReports(sFecha As String, sCodLocalReporte As Stri
         
         'Quita primera y ultima comilla
         sRespuesta = Mid(sRespuesta, 2, Len(sRespuesta) - 2)
-        MsgBox sRespuesta
+        'MsgBox sRespuesta
       
     End If
     
