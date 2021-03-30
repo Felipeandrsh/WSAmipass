@@ -8,7 +8,6 @@ Reference=*\G{00000205-0000-0010-8000-00AA006D2EA4}#2.5#0#..\..\Program Files (x
 Object={CD6C7865-5864-11D0-ABF0-0020AF6B0B7A}#1.0#0; dmocx.dll
 Form=formTest.frm
 Module=Module1; Modulos\Module1.bas
-Module=TestModule; Modulos\TestModule.bas
 Class=cJSONScript; Clases\cJSONScript.cls
 Class=cStringBuilder; Clases\cStringBuilder.cls
 Module=JSON; Modulos\JSON.bas
