@@ -1,14 +1,14 @@
 VERSION 5.00
 Begin VB.Form formTest 
    Caption         =   "Form1"
-   ClientHeight    =   8430
-   ClientLeft      =   60
-   ClientTop       =   405
-   ClientWidth     =   21735
+   ClientHeight    =   9750
+   ClientLeft      =   1500
+   ClientTop       =   4305
+   ClientWidth     =   20250
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8430
-   ScaleWidth      =   21735
-   StartUpPosition =   3  'Windows Default
+   LockControls    =   -1  'True
+   ScaleHeight     =   9750
+   ScaleWidth      =   20250
    Begin VB.Frame Frame6 
       Caption         =   "Anulacion"
       Height          =   3735
@@ -359,13 +359,6 @@ Begin VB.Form formTest
       TabIndex        =   17
       Top             =   270
       Width           =   5505
-      Begin VB.VScrollBar VScroll1 
-         Height          =   45
-         Left            =   3600
-         TabIndex        =   42
-         Top             =   3135
-         Width           =   45
-      End
       Begin VB.TextBox txtSalida 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -760,5 +753,9 @@ End Sub
 
 Private Sub cmdSalir_Click()
     Unload Me
+End Sub
+
+Private Sub VScroll1_Change()
+
 End Sub
 
